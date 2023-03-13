@@ -1,3 +1,5 @@
+/*
+
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser')
@@ -23,3 +25,12 @@ submodules.forEach((sm) => sm(app, {
 app.listen(app.get('port'), function() {
     console.log(`Express is running at localhost: ${app.get('port')}`);
 });
+*/
+
+exports.handler = async (event) => {
+    const response = {
+        statusCode: 200,
+        body: JSON.stringify("Hello from Lambda and Github!"),
+    }
+    return response
+}
