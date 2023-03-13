@@ -13,12 +13,14 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: npm install and build
-        run: |
-          npm ci
-          npm run build --if-present
+      - name: Install serverless globally
+        run: npm install -g serverless
+      - name: Install npm dependencies
+        run: npm ci
         env:
           CI: true
+      - name: Deploy lambda function
+        run: sls deploy
       - name: zip
         uses: montudor/action-zip@v0.1.0
         with:
