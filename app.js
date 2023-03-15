@@ -51,11 +51,9 @@ if ('development' == app.get('env')) {
   app.use(errorhandler());
 }
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
-
-app.get('/', routes.ui);
-app.get('/index.html', routes.ui);
+app.use('/', express.static(path.join(__dirname, 'views')));
+//app.set('view engine', 'pug');
+//app.get('/', routes.ui);
 
 // Custom Routes for MC
 app.post('/journey/save/', activityRouter.save);
@@ -63,6 +61,6 @@ app.post('/journey/validate/', activityRouter.validate);
 app.post('/journey/publish/', activityRouter.publish);
 app.post('/journey/execute/', activityRouter.execute);
 
-http.createServer(app).listen(app.get('port'), function () {
+http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

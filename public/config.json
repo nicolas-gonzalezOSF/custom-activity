@@ -45,9 +45,10 @@
     }
   },
   "userInterfaces": {
-    "configInspector": {
-      "hideHeader": true,
-      "size": "scm-sm"
+    "configModal": {
+      "height": 500,
+      "width": 500,
+      "fullscreen": false
     }
   }
 }
