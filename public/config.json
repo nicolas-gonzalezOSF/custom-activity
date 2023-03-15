@@ -48,7 +48,8 @@
     "configModal": {
       "height": 500,
       "width": 500,
-      "fullscreen": false
+      "fullscreen": false,
+      "emptyIframe": true
     }
   }
 }

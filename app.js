@@ -32,6 +32,7 @@ app.use(cors());
 app.use((req, res, next) => {
   res.header("Cross-Origin-Resource-Policy", "cross-origin");
   res.header('Access-Control-Allow-Origin', '*');
+  res.header('X-Frame-Options', '*allow-from *');
   next();
 });
 
