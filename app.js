@@ -16,17 +16,6 @@ const activityRouter = require('./routes/activity');
 // EXPRESS CONFIGURATION
 const app = express();
 
-app.use(
-  helmet({
-    contentSecurityPolicy: {
-      directives: {
-        'default-src': ["'self'"],
-        'frame-ancestors': ["'self'", `https://mc.${process.env.STACK}.exacttarget.com`, 'https://jbinteractions.exacttargetapps.com/rest/beta/interactionstudio/eventdefinition/'],
-      },
-    },
-  }),
-);
-
 app.use(cors());
 
 app.use((req, res, next) => {
