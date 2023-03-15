@@ -37,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // serve config
 app.use('/config.json', routes.config);
+app.set('port', (process.env.PORT || 3000));
 
 // custom activity routes
 app.use('/journey/execute/', activityRouter.execute);
