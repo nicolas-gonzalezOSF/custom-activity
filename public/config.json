@@ -1,11 +1,13 @@
 {
   "workflowApiVersion": "1.1",
   "metaData": {
-    "icon": "images/icon.png"
+    "icon": "images/icon.png",
+    "category": "custom"
   },
   "type": "REST",
   "lang": {
     "en-US": {
+      "name": "Custom Activity (Workflow API v1.1)",
       "description": "Custom Activity"
     }
   },

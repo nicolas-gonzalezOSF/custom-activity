@@ -45,7 +45,6 @@ if ('development' == app.get('env')) {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-
 app.get('/', routes.ui);
 
 // Custom Routes for MC
