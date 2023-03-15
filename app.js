@@ -37,7 +37,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // serve config
 app.use('/config.json', routes.config);
-app.set('port', (process.env.PORT || 3000));
 
 // custom activity routes
 app.use('/journey/execute/', activityRouter.execute);
@@ -62,6 +61,11 @@ app.use((err, req, res, next) => {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+// Set Port
+
+app.listen(app.get('port'), () => {
+  console.log('Server started on port '+app.get('port'));
 });
 
 module.exports = app;
