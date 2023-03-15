@@ -21,7 +21,7 @@ exports.config = (req, res) => {
  * @param res
  */
 exports.ui = (req, res) => {
-  res.render('index', {
+  res.render('index.pug', {
     title: 'Custom Activity',
     dropdownOptions: [
       {

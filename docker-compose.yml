@@ -6,7 +6,7 @@ services:
       target: production
     volumes:
       - .:/usr/src/app
-    command: npm run start
+    command: node app.js
     ports:
       - ":3000"
     environment:
