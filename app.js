@@ -9,6 +9,7 @@ const path = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
+const cors = require('cors');
 const routes = require('./routes/index');
 const activityRouter = require('./routes/activity');
 
@@ -25,6 +26,14 @@ app.use(
     },
   }),
 );
+
+app.use(cors());
+
+app.use((req, res, next) => {
+  res.header("Cross-Origin-Resource-Policy", "cross-origin");
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
 
 // Configure Express
 app.set('port', process.env.PORT || 3000);
