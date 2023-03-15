@@ -41,9 +41,9 @@ if ('development' == app.get('env')) {
   app.use(errorhandler());
 }
 // view engine setup
-app.use('/', express.static(path.join(__dirname, 'views')));
-//app.set('view engine', 'pug');
-//app.get('/', routes.ui);
+app.set('view engine', 'pug');
+app.get('/', routes.ui);
+app.get('/index.html', routes.ui);
 
 // Custom Routes for MC
 app.post('/journey/save/', activityRouter.save);
