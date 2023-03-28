@@ -56,7 +56,7 @@ exports.save = async (req, res) => {
  * @param req
  * @param res
  */
-exports.publish = (req, res) => res.status(200).send('Publish');
+exports.publish = (req, res) => res.status(200).json({ success: true });
 
 /**
  * Endpoint that receives a notification when a user performs
@@ -64,4 +64,4 @@ exports.publish = (req, res) => res.status(200).send('Publish');
  * @param req
  * @param res
  */
-exports.validate = (req, res) => res.status(200).send('Validate');
+exports.validate = (req, res) => res.status(200).json({ success: true });
