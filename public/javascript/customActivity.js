@@ -15,6 +15,8 @@ const connection = new Postmonger.Session();
 let authTokens = {};
 let payload = {};
 let $form;
+let eventDefinitionKey;
+
 $(window).ready(onRender);
 
 connection.on('initActivity', initialize);
@@ -102,15 +104,43 @@ function onGetEndpoints(endpoints) {
  * Save settings
  */
 function save() {
-    const Text = $('#Text').val();
-    const dropdownOptions = $('#dropdownOptions').val();
-    
+    const text = $('#text').val();
+
     if($form.valid()) {
-        payload.arguments.execute.inArguments.push({
-            text: Text,
-            dropdownOptions: dropdownOptions,
+        payload['metaData'].isConfigured = true;
+
+        payload['arguments'].execute.inArguments = [
+            {
+                "contactKey": "{{Contact.Key}}"
+            }
+        ];
+
+        $('.js-activity-setting').each(function () {
+            const $el = $(this);
+            const setting = {
+                id: $(this).attr('id'),
+                value: $(this).val()
+            };
+
+            $.each(payload['arguments'].execute.inArguments, function(index, value) {
+                if($el.attr('type') === 'checkbox') {
+                    if($el.is(":checked")) {
+                        value[setting.id] = setting.value;
+                    } else {
+                        value[setting.id] = 'false';
+                    }
+                } else {
+                    value[setting.id] = setting.value;
+                }
+            })
         });
-        payload.metaData.isConfigured = true;
+
+        payload.arguments.execute.inArguments.push({
+            text: text,
+            country: [
+              `{{Event.${eventDefinitionKey}."country"}}`,
+            ],
+        });
         connection.trigger('updateActivity', payload);
         console.log(JSON.stringify(payload));
     }
