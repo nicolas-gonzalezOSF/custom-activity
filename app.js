@@ -36,6 +36,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'pug');
 app.get('/', routes.ui);
 app.get('/index.html', routes.ui);
+app.get('/config.js', routes.config);
+app.get('/config.json', routes.config);
 
 // Custom Routes for MC
 app.post('/journey/save', activityRouter.save);
