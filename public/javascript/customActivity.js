@@ -106,12 +106,12 @@ function save() {
     const dropdownOptions = $('#dropdownOptions').val();
     
     if($form.valid()) {
-        toJbPayload.arguments.execute.inArguments.push({
+        payload.arguments.execute.inArguments.push({
             text: Text,
             dropdownOptions: dropdownOptions,
         });
-        toJbPayload.metaData.isConfigured = true;
-        connection.trigger('updateActivity', toJbPayload);
-        console.log(JSON.stringify(toJbPayload));
+        payload.metaData.isConfigured = true;
+        connection.trigger('updateActivity', payload);
+        console.log(JSON.stringify(payload));
     }
 }
