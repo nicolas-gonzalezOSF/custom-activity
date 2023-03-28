@@ -3,12 +3,9 @@ require('dotenv').config();
 // -------------------
 const express = require('express');
 const bodyParser = require('body-parser');
-const errorhandler = require('errorhandler');
 const http = require('http');
 const path = require('path');
-const logger = require('morgan');
 const cookieParser = require('cookie-parser');
-const helmet = require('helmet');
 const cors = require('cors');
 const routes = require('./routes/index');
 const activityRouter = require('./routes/activity');
