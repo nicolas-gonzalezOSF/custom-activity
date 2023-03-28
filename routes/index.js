@@ -8,11 +8,15 @@ const fs = require('fs');
  */
 exports.config = (req, res) => {
   const domain = req.headers.host || req.headers.origin;
+  const key = process.env.CA_KEY;
 
   const file = path.join(__dirname, '..', 'public', 'config.json');
 
   const configTemplate = fs.readFileSync(file, 'utf-8');
-  const config = JSON.parse(configTemplate.replace(/\$DOMAIN/g, domain));
+  let config = JSON.parse(configTemplate.replace(/\$DOMAIN/g, domain));
+  config = JSON.parse(configTemplate.replace(/\$KEY/g, key));
+  // eslint-disable-next-line no-console
+  console.log(config);
   res.json(config);
 };
 
