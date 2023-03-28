@@ -25,6 +25,7 @@ connection.on('requestedEndpoints', onGetEndpoints);
 
 connection.on('clickedNext', save);
 
+
 const buttonSettings = {
     button: 'next',
     text: 'done',
@@ -46,6 +47,14 @@ function onRender() {
         });
     });
 }
+
+connection.on('requestedTriggerEventDefinition', (eventDefinitionModel) => {
+    if (eventDefinitionModel) {
+        eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
+    }
+    console.log('eventDefinitionKey', eventDefinitionKey);
+    console.log('eventDefinitionModel', JSON.stringify(eventDefinitionModel));
+});
 
 /**
  * Initialization
@@ -106,7 +115,6 @@ function onGetEndpoints(endpoints) {
  */
 function save() {
     // const text = $('#text').val();
-
     if($form.valid()) {
         payload['metaData'].isConfigured = true;
 
@@ -144,12 +152,4 @@ function save() {
         connection.trigger('updateActivity', payload);
         console.log(JSON.stringify(payload));
     }
-
-    connection.on('requestedTriggerEventDefinition', (eventDefinitionModel) => {
-        if (eventDefinitionModel) {
-            eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
-        }
-        console.log('eventDefinitionKey', eventDefinitionKey);
-        console.log('eventDefinitionModel', JSON.stringify(eventDefinitionModel));
-    });
 }
