@@ -59,7 +59,7 @@ module.exports.getConfig = () => ({
       body: 'validate',
     },
     stop: {
-      url: `https://${process.env.CA_DOMAIN}/journey/save`,
+      url: `https://${process.env.CA_DOMAIN}/journey/stop`,
       verb: 'POST',
       format: 'json',
       useJwt: true,

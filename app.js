@@ -42,6 +42,7 @@ app.get('/config.json', routes.config);
 
 // Custom Routes for MC
 app.post('/journey/save', activityRouter.save);
+app.post('/journey/stop', activityRouter.stop);
 app.post('/journey/validate', activityRouter.validate);
 app.post('/journey/publish', activityRouter.publish);
 app.post('/journey/execute', activityRouter.execute);

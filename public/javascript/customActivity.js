@@ -104,7 +104,7 @@ function onGetEndpoints(endpoints) {
  * Save settings
  */
 function save() {
-    const text = $('#text').val();
+    // const text = $('#text').val();
 
     if($form.valid()) {
         payload['metaData'].isConfigured = true;
@@ -133,13 +133,6 @@ function save() {
                     value[setting.id] = setting.value;
                 }
             })
-        });
-
-        payload.arguments.execute.inArguments.push({
-            text: text,
-            country: [
-              `{{Event.${eventDefinitionKey}."country"}}`,
-            ],
         });
         connection.trigger('updateActivity', payload);
         console.log(JSON.stringify(payload));

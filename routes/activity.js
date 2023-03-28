@@ -24,6 +24,8 @@ exports.execute = async (req, res) => {
 
 exports.save = async (_req, res) => res.status(200).json({ success: true });
 
+exports.stop = async (_req, res) => res.status(200).json({ success: true });
+
 exports.publish = (_req, res) => res.status(200).json({ success: true });
 
 exports.validate = (_req, res) => res.status(200).json({ success: true });
