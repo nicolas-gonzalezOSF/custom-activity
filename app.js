@@ -9,13 +9,14 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const routes = require('./routes/index');
 const activityRouter = require('./routes/activity');
+const _ = require('lodash');
 
 // EXPRESS CONFIGURATION
 const app = express();
 
 app.use(cors());
 
-app.use((req, res, next) => {
+app.use((_req, res, next) => {
   res.header('Cross-Origin-Resource-Policy', 'cross-origin');
   res.header('Access-Control-Allow-Origin', '*');
   next();

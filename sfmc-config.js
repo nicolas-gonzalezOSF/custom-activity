@@ -40,18 +40,28 @@ module.exports.getConfig = (env) => ({
       verb: 'POST',
       format: 'json',
       useJwt: true,
+      body: 'save',
     },
     publish: {
       url: `https://${env}/journey/publish`,
       verb: 'POST',
       format: 'json',
       useJwt: true,
+      body: 'publish',
     },
     validate: {
       url: `https://${env}/journey/validate`,
       verb: 'POST',
       format: 'json',
       useJwt: true,
+      body: 'validate',
+    },
+    stop: {
+      url: `https://${env}/journey/save`,
+      verb: 'POST',
+      format: 'json',
+      useJwt: true,
+      body: 'stop',
     },
   },
   userInterfaces: {
