@@ -24,6 +24,7 @@
     }
   },
   "configurationArguments": {
+    "applicationExtensionKey": "c39548c2-1c57-4f24-b65a-93fc925e8b75",
     "save": {
       "url": "https://$DOMAIN/journey/save",
       "verb": "POST",
