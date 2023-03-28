@@ -22,23 +22,23 @@ const coalesceArray = (array, correlationId) => {
   return '';
 };
 
-/**
- * The Journey Builder calls this method for each contact processed by the journey.
- * @param req
- * @param res
- * @returns {Promise<void>}
- */
 exports.execute = async (req, res) => {
   const correlationId = uuidv4().replace(/-/g, '');
 
-  logger.isInfoEnabled(
-    `[${correlationId}] --> Journey Builder payload/inArguments is empty -->`,
+  logger.info(
+    `[${correlationId}] --> Executing Activity`,
   );
   const data = req.body;
 
+  logger.info(
+    `[${correlationId}] --> Req Body --> ${JSON.stringify(
+      data,
+    )}`,
+  );
+
   if (!data.inArguments || data.inArguments.length === 0) {
     logger.error(
-      `[${correlationId}] --> Journey Builder payload/inArguments is empty --> ${JSON.stringify(
+      `[${correlationId}] --> Journey Builder inArguments is empty --> ${JSON.stringify(
         data,
       )}`,
     );
@@ -48,7 +48,7 @@ exports.execute = async (req, res) => {
 
   if (!payload) {
     logger.error(
-      `[${correlationId}] --> Journey Builder payload/inArguments is empty --> ${JSON.stringify(
+      `[${correlationId}] --> Journey Builder payload is empty --> ${JSON.stringify(
         data,
       )}`,
     );
@@ -62,8 +62,11 @@ exports.execute = async (req, res) => {
     country: coalesceArray(payload.country, correlationId),
   };
 
-  console.log(JSON.stringify(job));
-
+  logger.info(
+    `[${correlationId}] --> Job Data --> ${JSON.stringify(
+      job,
+    )}`,
+  );
   res.status(200).send({
     success: true,
   });
