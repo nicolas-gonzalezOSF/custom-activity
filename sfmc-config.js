@@ -1,5 +1,5 @@
 module.exports.getConfig = (env) => ({
-  key: '39548c2-1c57-4f24-b65a-93fc925e8b75',
+  key: '1937b7a5-247d-432c-bead-3898a3428e1b',
   workflowApiVersion: '1.1',
   metaData: {
     version: '1.0',
@@ -34,6 +34,7 @@ module.exports.getConfig = (env) => ({
     },
   },
   configurationArguments: {
+    applicationExtensionKey: '1937b7a5-247d-432c-bead-3898a3428e1b',
     save: {
       url: `https://${env}/journey/save/`,
       verb: 'POST',
