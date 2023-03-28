@@ -7,15 +7,14 @@ const fs = require('fs');
  * @param res
  */
 exports.config = (req, res) => {
-  const domain = req.headers.host || req.headers.origin;
+  const domain = "customactivity-nicolasgonzalez.b4a.run";
   const key = process.env.CA_KEY;
 
   const file = path.join(__dirname, '..', 'public', 'config.json');
 
   const configTemplate = fs.readFileSync(file, 'utf-8');
-  let config = JSON.parse(configTemplate.replace(/\$DOMAIN/g, domain));
-  config = JSON.parse(configTemplate.replace(/\$KEY/g, key));
-  // eslint-disable-next-line no-console
+  const config = JSON.parse(configTemplate.replace(/\$DOMAIN/g, domain));
+
   console.log(config);
   res.json(config);
 };
