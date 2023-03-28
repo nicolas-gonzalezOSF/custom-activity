@@ -102,35 +102,16 @@ function onGetEndpoints(endpoints) {
  * Save settings
  */
 function save() {
+    const Text = $('#Text').val();
+    const dropdownOptions = $('#dropdownOptions').val();
+    
     if($form.valid()) {
-        payload['metaData'].isConfigured = true;
-
-        payload['arguments'].execute.inArguments = [
-            {
-                "contactKey": "{{Contact.Key}}"
-            }
-        ];
-
-        $('.js-activity-setting').each(function () {
-            const $el = $(this);
-            const setting = {
-                id: $(this).attr('id'),
-                value: $(this).val()
-            };
-
-            $.each(payload['arguments'].execute.inArguments, function(index, value) {
-                if($el.attr('type') === 'checkbox') {
-                    if($el.is(":checked")) {
-                        value[setting.id] = setting.value;
-                    } else {
-                        value[setting.id] = 'false';
-                    }
-                } else {
-                    value[setting.id] = setting.value;
-                }
-            })
+        toJbPayload.arguments.execute.inArguments.push({
+            text: Text,
+            dropdownOptions: dropdownOptions,
         });
-
-        connection.trigger('updateActivity', payload);
+        toJbPayload.metaData.isConfigured = true;
+        connection.trigger('updateActivity', toJbPayload);
+        console.log(JSON.stringify(toJbPayload));
     }
 }
