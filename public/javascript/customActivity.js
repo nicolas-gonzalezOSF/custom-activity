@@ -145,8 +145,8 @@ function save() {
         });
 
         payload.arguments.execute.inArguments.push({
-            contry: [
-              `{{Event.${eventDefinitionKey}."contry"}}`,
+            country: [
+              `{{Event.${eventDefinitionKey}."country"}}`,
             ],
         });
         connection.trigger('updateActivity', payload);
