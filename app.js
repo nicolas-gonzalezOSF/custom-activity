@@ -38,12 +38,12 @@ app.get('/', routes.ui);
 app.get('/index.html', routes.ui);
 
 // Custom Routes for MC
-app.post('/journey/save/', activityRouter.save);
-app.post('/journey/validate/', activityRouter.validate);
-app.post('/journey/publish/', activityRouter.publish);
-app.post('/journey/execute/', activityRouter.execute);
+app.post('/journey/save', activityRouter.save);
+app.post('/journey/validate', activityRouter.validate);
+app.post('/journey/publish', activityRouter.publish);
+app.post('/journey/execute', activityRouter.execute);
 
-http.createServer(app).listen(app.get('port'), () =>{
+http.createServer(app).listen(app.get('port'), () => {
   // eslint-disable-next-line no-console
   console.log(`Express server listening on port ${app.get('port')}`);
 });

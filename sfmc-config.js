@@ -21,7 +21,7 @@ module.exports.getConfig = (env) => ({
         },
       ],
       outArguments: [],
-      url: `https://${env}/journey/execute/`,
+      url: `https://${env}/journey/execute`,
       verb: 'POST',
       body: '',
       header: '',
@@ -36,19 +36,19 @@ module.exports.getConfig = (env) => ({
   configurationArguments: {
     applicationExtensionKey: '1937b7a5-247d-432c-bead-3898a3428e1b',
     save: {
-      url: `https://${env}/journey/save/`,
+      url: `https://${env}/journey/save`,
       verb: 'POST',
       format: 'json',
       useJwt: true,
     },
     publish: {
-      url: `https://${env}/journey/publish/`,
+      url: `https://${env}/journey/publish`,
       verb: 'POST',
       format: 'json',
       useJwt: true,
     },
     validate: {
-      url: `https://${env}/journey/validate/`,
+      url: `https://${env}/journey/validate`,
       verb: 'POST',
       format: 'json',
       useJwt: true,
