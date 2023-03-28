@@ -1,4 +1,6 @@
-module.exports.getConfig = (env) => ({
+require('dotenv').config();
+
+module.exports.getConfig = () => ({
   key: '1937b7a5-247d-432c-bead-3898a3428e1b',
   workflowApiVersion: '1.1',
   metaData: {

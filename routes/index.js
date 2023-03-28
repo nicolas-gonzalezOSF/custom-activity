@@ -5,7 +5,7 @@ const { getConfig } = require('../sfmc-config');
  * @param req
  * @param res
  */
-exports.config = (_req, res) => res.json(getConfig(process.env.CA_DOMAIN));
+exports.config = (_req, res) => res.json(getConfig());
 /**
  * Render UI
  * @param req
