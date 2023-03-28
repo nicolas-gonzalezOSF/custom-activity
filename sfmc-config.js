@@ -56,7 +56,6 @@ module.exports.getConfig = (env) => ({
   },
   userInterfaces: {
     configModal: {
-      url: `https://${env}/`,
       height: 350,
       width: 450,
       format: 'json',
