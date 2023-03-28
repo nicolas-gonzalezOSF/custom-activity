@@ -22,13 +22,14 @@ const coalesceArray = (array, correlationId) => {
   return '';
 };
 
+// eslint-disable-next-line func-names
 exports.execute = async (req, res) => {
   const correlationId = uuidv4().replace(/-/g, '');
 
   logger.info(
     `[${correlationId}] --> Executing Activity`,
   );
-  const data = req.body;
+  const data = JWT(req.body);
 
   logger.info(
     `[${correlationId}] --> Req Body --> ${JSON.stringify(
