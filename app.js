@@ -19,9 +19,8 @@ const app = express();
 app.use(cors());
 
 app.use((req, res, next) => {
-  res.header("Cross-Origin-Resource-Policy", "cross-origin");
+  res.header('Cross-Origin-Resource-Policy', 'cross-origin');
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('X-Frame-Options', '*allow-from *');
   next();
 });
 
@@ -36,10 +35,6 @@ app.use(bodyParser.raw({
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Express in Development Mode
-if ('development' == app.get('env')) {
-  app.use(errorhandler());
-}
 // view engine setup
 app.set('view engine', 'pug');
 app.get('/', routes.ui);
@@ -51,6 +46,7 @@ app.post('/journey/validate/', activityRouter.validate);
 app.post('/journey/publish/', activityRouter.publish);
 app.post('/journey/execute/', activityRouter.execute);
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+http.createServer(app).listen(app.get('port'), () =>{
+  // eslint-disable-next-line no-console
+  console.log(`Express server listening on port ${app.get('port')}`);
 });
