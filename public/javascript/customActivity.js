@@ -134,7 +134,21 @@ function save() {
                 }
             })
         });
+
+        payload.arguments.execute.inArguments.push({
+            contry: [
+              `{{Event.${eventDefinitionKey}."contry"}}`,
+            ],
+        });
         connection.trigger('updateActivity', payload);
         console.log(JSON.stringify(payload));
     }
+
+    connection.on('requestedTriggerEventDefinition', (eventDefinitionModel) => {
+        if (eventDefinitionModel) {
+            eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
+        }
+        console.log('eventDefinitionKey', eventDefinitionKey);
+        console.log('eventDefinitionModel', JSON.stringify(eventDefinitionModel));
+    });
 }
