@@ -1,10 +1,11 @@
+const _ = require('lodash');
 const { getConfig } = require('../sfmc-config');
 /**
  * Render Config
  * @param req
  * @param res
  */
-exports.config = (req, res) => res.json(getConfig(process.env.CA_DOMAIN));
+exports.config = (_req, res) => res.json(getConfig(process.env.CA_DOMAIN));
 /**
  * Render UI
  * @param req

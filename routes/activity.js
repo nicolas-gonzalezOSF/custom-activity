@@ -1,4 +1,5 @@
-const { v1: Uuidv1 } = require('uuid');
+const _ = require('lodash');
+const { v4: uuidv4 } = require('uuid');
 const JWT = require('../utils/jwtDecoder');
 const SFClient = require('../utils/sfmc-client');
 const logger = require('../utils/logger');
@@ -10,58 +11,19 @@ const logger = require('../utils/logger');
  * @returns {Promise<void>}
  */
 exports.execute = async (req, res) => {
-  // decode data
-  const data = JWT(req.body);
+  const correlationId = uuidv4().replace(/-/g, '');
 
-  logger.info(data);
-
-  try {
-    const id = Uuidv1();
-
-    await SFClient.saveData(process.env.DATA_EXTENSION_EXTERNAL_KEY, [
-      {
-        keys: {
-          Id: id,
-          SubscriberKey: data.inArguments[0].contactKey,
-        },
-        values: {
-          Event: data.inArguments[0].DropdownOptions,
-          Text: data.inArguments[0].Text,
-        },
-      },
-    ]);
-  } catch (error) {
-    logger.error(error);
-  }
+  logger.isInfoEnabled(
+    `[${correlationId}] --> Journey Builder payload/inArguments is empty -->`,
+  );
 
   res.status(200).send({
     success: true,
   });
 };
 
-/**
- * Endpoint that receives a notification when a user saves the journey.
- * @param req
- * @param res
- * @returns {Promise<void>}
- */
-exports.save = async (req, res) => {
-  res.status(200).send({
-    status: 'ok',
-  });
-};
+exports.save = async (_req, res) => res.status(200).json({ success: true });
 
-/**
- *  Endpoint that receives a notification when a user publishes the journey.
- * @param req
- * @param res
- */
-exports.publish = (req, res) => res.status(200).json({ success: true });
+exports.publish = (_req, res) => res.status(200).json({ success: true });
 
-/**
- * Endpoint that receives a notification when a user performs
- * some validation as part of the publishing process.
- * @param req
- * @param res
- */
-exports.validate = (req, res) => res.status(200).json({ success: true });
+exports.validate = (_req, res) => res.status(200).json({ success: true });
