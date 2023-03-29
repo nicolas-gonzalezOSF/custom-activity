@@ -3,40 +3,14 @@ version: '3.4'
 services:
   web:
     build:
-      context: ./web
+      context: ./
       dockerfile: Dockerfile
       target: production
     volumes:
-      - ./web:/usr/src/app
+      - .:/usr/src/app
     command: node app.js
     ports:
       - "3000:3000"
     environment:
       NODE_ENV: production
       DEBUG: nodejs-docker-express:*
-    networks:
-      - app-network
-  
-  rabbitmq:
-    image: rabbitmq:3.11.11-management
-    ports:
-      - '5672:5672'
-      - '15672:15672'
-
-  consumer:
-    build:
-      context: ./consumer
-      dockerfile: Dockerfile
-    working_dir: /usr/src/app
-    volumes:
-      - ./consumer:/usr/src/app
-    environment:
-      - MESSAGE_QUEUE=amqp://rabbitmq
-    depends_on: 
-      - rabbitmq
-    healthcheck:
-      test: ["CMD-SHELL", " netstat -an | grep -q 5672"]
-
-networks:
-  app-network:
-    driver: bridge
