@@ -1,0 +1,8 @@
+{
+    "rabbitmq": {
+      "workerExchange": "docgen.worker.dx",
+      "retryExchange": "docgen.retry.dx",
+      "constantBackoff": 15000
+    }
+}
+  

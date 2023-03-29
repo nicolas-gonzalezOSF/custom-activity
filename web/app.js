@@ -5,11 +5,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const http = require('http');
 const path = require('path');
+const _ = require('lodash');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const routes = require('./routes/index');
 const activityRouter = require('./routes/activity');
-const _ = require('lodash');
+// const consumers = require('./consumer/queue');
+// const { Queues } = require('./queues');
+// const logger = require('./utils/logger');
+// const amqp = require('amqplib');
 
 // EXPRESS CONFIGURATION
 const app = express();
