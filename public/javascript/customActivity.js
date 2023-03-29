@@ -110,9 +110,7 @@ function save() {
     if($form.valid()) {
         const DropdownOptions = $('#DropdownOptions').val();
         const AckCheck = $("#text").is(':checked');
-
-        payload['metaData'].isConfigured = true;
-
+        
         payload.arguments.execute.inArguments.push({
             DropdownOptions: DropdownOptions,
             AckCheck: AckCheck,
