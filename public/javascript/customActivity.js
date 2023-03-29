@@ -51,10 +51,10 @@ function onRender() {
 connection.on('requestedTriggerEventDefinition', (eventDefinitionModel) => {
     if (eventDefinitionModel) {
         eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
-        dataExtensionId = eventDefinitionModel.dataExtensionId;
+        // dataExtensionId = eventDefinitionModel.dataExtensionId;
     }
-    // console.log('eventDefinitionKey', eventDefinitionKey);
-    // console.log('eventDefinitionModel', JSON.stringify(eventDefinitionModel));
+    console.log('eventDefinitionKey', eventDefinitionKey);
+    console.log('eventDefinitionModel', JSON.stringify(eventDefinitionModel));
 });
 
 /**
