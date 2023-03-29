@@ -10,7 +10,6 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const routes = require('./routes/index');
 const activityRouter = require('./routes/activity');
-const sfmcRouter = require('./routes/sfmc');
 
 // const consumers = require('./consumer/queue');
 // const { Queues } = require('./queues');
@@ -52,8 +51,6 @@ app.post('/journey/stop', activityRouter.stop);
 app.post('/journey/validate', activityRouter.validate);
 app.post('/journey/publish', activityRouter.publish);
 app.post('/journey/execute', activityRouter.execute);
-
-app.post('/sfmc/jws', sfmcRouter.saveData);
 
 http.createServer(app).listen(app.get('port'), () => {
   // eslint-disable-next-line no-console

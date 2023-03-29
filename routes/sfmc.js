@@ -108,7 +108,7 @@ module.exports = {
   saveData: async (correlationId, deData) => {
     const now = moment().tz('Australia/Sydney');
     const SFMCtoken = await getJwtToken(correlationId);
-    const newdate = moment(now).add(15, 'm');
+    const newdate = moment(now).add(30, 'm');
     const data = {
       items: [
         {
