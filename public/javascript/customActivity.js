@@ -16,6 +16,7 @@ let authTokens = {};
 let payload = {};
 let $form;
 let eventDefinitionKey;
+let dataExtensionId;
 
 $(window).ready(onRender);
 
@@ -51,7 +52,7 @@ function onRender() {
 connection.on('requestedTriggerEventDefinition', (eventDefinitionModel) => {
     if (eventDefinitionModel) {
         eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
-        // dataExtensionId = eventDefinitionModel.dataExtensionId;
+        dataExtensionId = eventDefinitionModel.dataExtensionId;
     }
     console.log('eventDefinitionKey', eventDefinitionKey);
     console.log('eventDefinitionModel', JSON.stringify(eventDefinitionModel));
