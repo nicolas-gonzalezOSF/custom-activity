@@ -16,13 +16,10 @@ exports.ui = (req, res) => {
     title: 'Custom Activity',
     dropdownOptions: [
       {
-        name: 'Journey Entry',
-        value: 'journeyEntry',
-      },
-      {
-        name: 'Journey Exit',
-        value: 'journeyExit',
+        name: 'Journey Email Send - Wait Based On Country',
+        value: 'journeywaitbycountry',
       },
     ],
+    checktext: 'I acknowledge that i created the fields: country and dateSend in the entry data extension',
   });
 };

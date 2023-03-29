@@ -16,17 +16,27 @@ block content
     .slds-card__body.slds-card__body_inner
       form.js-settings-form
         .slds-form-element
+          span
+            p Before configuring the activity please create this 2 fields in your entry data extension 
+              b country 
+              span text field - Nullable and 
+              b dateSend 
+              span date field - Nullable 
+        .slds-form-element
           label.slds-form-element__label(for="DropdownOptions") Type
           .slds-form-element__control
             .slds-select_container
               select#DropdownOptions.slds-select.js-activity-setting(name='dropdownOptions')
                 each dropdownOption in dropdownOptions
                   option(value=dropdownOption.value)= dropdownOption.name
-              
-          label.slds-form-element__label.slds-p-top_medium(for='Text')
+        .slds-form-element
+          label.slds-form-element__label.slds-p-top_medium(for='')
             abbr.slds-required(title='required')
-            | Text *
+            | Acknowledge *
           .slds-form-element__control
-            input#Text.slds-input.js-activity-setting(required='', placeholder='', name='text')
-
+            .slds-checkbox
+              input(type="checkbox" id="text" name="text" )
+              label.slds-checkbox__label(for='text')
+                span.slds-checkbox_faux
+                span.slds-form-element__label(style="font-size: 12px; font-weight: bold;")= checktext
     footer.slds-card__footer
