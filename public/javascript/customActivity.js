@@ -74,28 +74,10 @@ function initialize(data) {
 
     console.log(JSON.stringify(oArgs));
 
-    const hasInArguments = Boolean(
-        payload['arguments'] &&
-        payload['arguments'].execute &&
-        payload['arguments'].execute.inArguments &&
-        payload['arguments'].execute.inArguments.length > 0
-    );
-
-    const inArguments = hasInArguments
-        ? payload['arguments'].execute.inArguments
-        : {};
-
-    $.each(inArguments, function (index, inArgument) {
-        $.each(inArgument, function (key, value) {
-            const $el = $('#' + key);
-            if($el.attr('type') === 'checkbox') {
-                $el.prop('checked', value === 'true');
-            } else {
-                $el.val(value);
-            }
-        });
-    });
-
+    if(oArgs.AckCheck === true){
+        $("#text").prop('checked', 'true')
+    }
+    
     validateForm(function($form) {
         buttonSettings.enabled = $form.valid();
         connection.trigger('updateButton', buttonSettings);
