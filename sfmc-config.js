@@ -11,7 +11,7 @@ module.exports.getConfig = () => ({
   type: 'REST',
   lang: {
     'en-US': {
-      name: 'Custom Activity Nick G',
+      name: 'Country Send Time Calculator',
       description: '',
     },
   },
