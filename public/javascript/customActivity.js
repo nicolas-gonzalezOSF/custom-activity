@@ -64,6 +64,16 @@ function initialize(data) {
     if (data) {
         payload = data;
     }
+    console.log(JSON.stringify(payload));
+    
+    const aArgs = payload.arguments.execute.inArguments;
+    const oArgs = {};
+    for (let i = 0; i < aArgs.length; i++) {
+        Object.assign(oArgs, aArgs[i]);
+    }
+
+    console.log(JSON.stringify(oArgs));
+
     const hasInArguments = Boolean(
         payload['arguments'] &&
         payload['arguments'].execute &&
@@ -114,44 +124,28 @@ function onGetEndpoints(endpoints) {
  * Save settings
  */
 function save() {
-    // const text = $('#text').val();
+
     if($form.valid()) {
+        const DropdownOptions = $('#DropdownOptions').val();
+        const AckCheck = $("#text").is(':checked');
+
         payload['metaData'].isConfigured = true;
 
-        payload['arguments'].execute.inArguments = [
-            {
-                "contactKey": "{{Contact.Key}}"
-            }
-        ];
-
-        $('.js-activity-setting').each(function () {
-            const $el = $(this);
-            const setting = {
-                id: $(this).attr('id'),
-                value: $(this).val()
-            };
-
-            $.each(payload['arguments'].execute.inArguments, function(index, value) {
-                if($el.attr('type') === 'checkbox') {
-                    if($el.is(":checked")) {
-                        value[setting.id] = setting.value;
-                    } else {
-                        value[setting.id] = 'false';
-                    }
-                } else {
-                    value[setting.id] = setting.value;
-                }
-            })
-        });
-
         payload.arguments.execute.inArguments.push({
-            country: [
-              `{{Event.${eventDefinitionKey}."country"}}`,
-            ],
-            eventDefinitionKey: [
-                `${eventDefinitionKey}`,
-            ],
+            DropdownOptions: DropdownOptions,
+            AckCheck: AckCheck,
+                subscriber_key: [
+                    `{{Contact.Key}}`,
+                ],
+                country: [
+                `{{Event.${eventDefinitionKey}."country"}}`,
+                ],
+                eventDefinitionKey: [
+                    `${eventDefinitionKey}`,
+                ],
         });
+
+        payload.metaData.isConfigured = true;
         connection.trigger('updateActivity', payload);
         console.log(JSON.stringify(payload));
     }
