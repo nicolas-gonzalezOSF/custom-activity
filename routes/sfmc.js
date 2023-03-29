@@ -112,20 +112,18 @@ module.exports = {
     const data = {
       items: [
         {
-          contacId: '0000001',
+          contacId: deData.subscriber_key,
           dateSend: newdate.format('YYYY-MM-DDTHH:mm:ss'),
-          dataExtensionId: '627f7197-fccc-ed11-a5b7-5cba2c706158',
+          dataExtensionId: deData.dataExtensionId,
         },
       ],
     };
 
     logger.info(`[${correlationId}] --> ${JSON.stringify(deData)}`);
-    // const Rid = await updateSfmcNhData(SFMCtoken, data, correlationId);
-    /*
+    const Rid = await updateSfmcNhData(SFMCtoken, data, correlationId);
     return {
       correlationId,
       Rid,
     };
-    */
   },
 };

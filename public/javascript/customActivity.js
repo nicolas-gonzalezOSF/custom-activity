@@ -54,8 +54,8 @@ connection.on('requestedTriggerEventDefinition', (eventDefinitionModel) => {
         eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
         dataExtensionId = eventDefinitionModel.dataExtensionId;
     }
-    console.log('eventDefinitionKey', eventDefinitionKey);
-    console.log('eventDefinitionModel', JSON.stringify(eventDefinitionModel));
+    // console.log('eventDefinitionKey', eventDefinitionKey);
+    // console.log('eventDefinitionModel', JSON.stringify(eventDefinitionModel));
 });
 
 /**
