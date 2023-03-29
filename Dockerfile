@@ -7,4 +7,5 @@ FROM base as production
 ENV NODE_ENV=production
 
 # Bundle app source
+EXPOSE 3000
 COPY . .
