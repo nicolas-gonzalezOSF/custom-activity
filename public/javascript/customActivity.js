@@ -126,9 +126,16 @@ function save() {
                     `${eventDefinitionKey}`,
                 ],
         });
+        
 
-        payload.metaData.isConfigured = true;
-        connection.trigger('updateActivity', payload);
-        console.log(JSON.stringify(payload));
+        if(AckCheck === true ){
+            payload.metaData.isConfigured = true;
+            connection.trigger('updateActivity', payload);
+            console.log(JSON.stringify(payload));
+        } else {
+            payload.metaData.isConfigured = false;
+            connection.trigger('updateActivity', payload);
+            console.log(JSON.stringify(payload));
+        }
     }
 }
