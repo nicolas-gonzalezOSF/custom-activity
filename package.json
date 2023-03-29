@@ -28,6 +28,7 @@
     "moment-timezone": "^0.5.42",
     "morgan": "^1.10.0",
     "pug": "^3.0.2",
+    "request-promise": "^4.2.6",
     "uuid": "^9.0.0",
     "winston": "^3.8.2"
   },

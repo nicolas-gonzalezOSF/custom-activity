@@ -3,8 +3,9 @@ const { v4: uuidv4 } = require('uuid');
 const moment = require('moment-timezone');
 
 const JWT = require('../utils/jwtDecoder');
-const SFClient = require('../utils/sfmc-client');
 const logger = require('../utils/logger');
+
+const sfmcRouter = require('./sfmc');
 
 const coalesceArray = (array, correlationId) => {
   logger.debug(`[${correlationId}] --> Coalescing:`, array);
@@ -22,7 +23,7 @@ const coalesceArray = (array, correlationId) => {
   return '';
 };
 
-// eslint-disable-next-line func-names
+// eslint-disable-next-line func-names, consistent-return
 exports.execute = async (req, res) => {
   const correlationId = uuidv4().replace(/-/g, '');
 
@@ -59,8 +60,9 @@ exports.execute = async (req, res) => {
   const now = moment().tz('Australia/Sydney');
   const job = {
     created_date: now.format('YYYY-MM-DDTHH:mm:ss'),
-    subscriber_key: coalesceArray(payload.contactKey),
+    subscriber_key: coalesceArray(payload.subscriber_key),
     eventDefinitionKey: coalesceArray(payload.eventDefinitionKey, correlationId),
+    dataExtensionId: coalesceArray(payload.dataExtensionId, correlationId),
     country: coalesceArray(payload.country, correlationId),
   };
 
@@ -69,6 +71,9 @@ exports.execute = async (req, res) => {
       job,
     )}`,
   );
+
+  sfmcRouter.saveData(correlationId, job);
+
   res.status(200).send({
     success: true,
   });
