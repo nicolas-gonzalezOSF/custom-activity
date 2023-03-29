@@ -148,6 +148,9 @@ function save() {
             country: [
               `{{Event.${eventDefinitionKey}."country"}}`,
             ],
+            eventDefinitionKey: [
+                `{{${eventDefinitionKey}}}`,
+            ],
         });
         connection.trigger('updateActivity', payload);
         console.log(JSON.stringify(payload));

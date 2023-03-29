@@ -59,7 +59,8 @@ exports.execute = async (req, res) => {
   const now = moment().tz('Australia/Sydney');
   const job = {
     created_date: now.format('YYYY-MM-DDTHH:mm:ss'),
-    subscriber_key: data.inArguments[0].contact_identifier,
+    subscriber_key: coalesceArray(data.inArguments.contactKey, correlationId),
+    eventDefinitionKey: coalesceArray(data.inArguments.eventDefinitionKey, correlationId),
     country: coalesceArray(payload.country, correlationId),
   };
 
