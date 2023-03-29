@@ -4,6 +4,7 @@ services:
   web:
     build:
       context: ./web
+      dockerfile: Dockerfile
       target: production
     volumes:
       - ./web:/usr/src/app
