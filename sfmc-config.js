@@ -29,6 +29,7 @@ module.exports.getConfig = () => ({
       header: '',
       format: 'json',
       useJwt: true,
+      customerKey: process.env.CA_KEY, 
       timeout: 10000,
       concurrentRequests: 1,
       retryCount: 2,
@@ -42,6 +43,7 @@ module.exports.getConfig = () => ({
       verb: 'POST',
       format: 'json',
       useJwt: true,
+      customerKey: process.env.CA_KEY,
       body: '',
     },
     publish: {
@@ -49,6 +51,7 @@ module.exports.getConfig = () => ({
       verb: 'POST',
       format: 'json',
       useJwt: true,
+      customerKey: process.env.CA_KEY,
       body: '',
     },
     validate: {
@@ -56,6 +59,7 @@ module.exports.getConfig = () => ({
       verb: 'POST',
       format: 'json',
       useJwt: true,
+      customerKey: process.env.CA_KEY,
       body: '{}',
     },
     stop: {
@@ -63,6 +67,7 @@ module.exports.getConfig = () => ({
       verb: 'POST',
       format: 'json',
       useJwt: true,
+      customerKey: process.env.CA_KEY,
       body: '',
     },
   },
@@ -72,6 +77,7 @@ module.exports.getConfig = () => ({
       width: 450,
       format: 'json',
       useJwt: true,
+      customerKey: process.env.CA_KEY,
       fullscreen: false,
     },
   },
