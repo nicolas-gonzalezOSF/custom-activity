@@ -79,7 +79,7 @@ class BaseQueue {
         headers: {
           error: err.message,
           errStack: err.stack,
-          errTime: moment().tz('Australia/Sydney').format(),
+          errTime: moment().tz(process.env.MAIN_TIMEZONE).format(),
         },
       }),
     );
@@ -98,7 +98,7 @@ class BaseQueue {
       contentType: 'application/json',
       correlationId,
       headers: {
-        publishTime: moment().tz('Australia/Sydney').format(),
+        publishTime: moment().tz(process.env.MAIN_TIMEZONE).format(),
       },
     };
     logger.info(`[${correlationId}] --> Publishing to ${this.WORKER_QUEUE}`);

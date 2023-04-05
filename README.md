@@ -19,6 +19,9 @@ SFMC_SUBDOMAIN=
 PORT=3000
 CA_KEY=
 CA_DOMAIN=HOST/ HTTPS GET
+MAIN_TIMEZONE=Australia/Sydney
+DATE_RSTART=07
+DATE_REND=21
 ```
 
 Then, run in the console: 

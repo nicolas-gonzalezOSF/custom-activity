@@ -57,7 +57,7 @@ exports.execute = async (req, res) => {
     return res.status(422).send('Journey Builder payload is empty');
   }
 
-  const now = moment().tz('Australia/Sydney');
+  const now = moment().tz(process.env.MAIN_TIMEZONE);
   const job = {
     created_date: now.format('YYYY-MM-DDTHH:mm:ss'),
     subscriber_key: coalesceArray(payload.subscriber_key),

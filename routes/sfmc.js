@@ -4,6 +4,8 @@ const { v4: uuidv4 } = require('uuid');
 const request = require('request-promise');
 const moment = require('moment-timezone');
 const logger = require('../utils/logger');
+const dateCalculator = require('../utils/dateCalculator');
+
 
 const SFMC_TENANT_ID = process.env.SFMC_SUBDOMAIN;
 
@@ -106,20 +108,19 @@ const updateSfmcNhData = async (cred, deData, correlationId) => {
 module.exports = {
   // eslint-disable-next-line no-unused-vars
   saveData: async (correlationId, deData) => {
-    const now = moment().tz('Australia/Sydney');
     const SFMCtoken = await getJwtToken(correlationId);
-    const newdate = moment(now).add(30, 'm');
+    const newdate = dateCalculator.dateFormatCalc(correlationId,deData.country);
     const data = {
       items: [
         {
           contacId: deData.subscriber_key,
-          dateSend: newdate.format('YYYY-MM-DDTHH:mm:ss'),
+          dateSend: newdate,
           dataExtensionId: deData.dataExtensionId,
         },
       ],
     };
 
-    logger.info(`[${correlationId}] --> ${JSON.stringify(deData)}`);
+    logger.info(`[${correlationId}] DE DATA --> ${JSON.stringify(deData)}`);
     const Rid = await updateSfmcNhData(SFMCtoken, data, correlationId);
     return {
       correlationId,
