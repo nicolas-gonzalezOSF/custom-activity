@@ -30,6 +30,11 @@ exports.execute = async (req, res) => {
   logger.info(
     `[${correlationId}] --> Executing Activity`,
   );
+
+  logger.info(
+    `[${correlationId}] --> Request Body ${req.body}`,
+  );
+  
   const data = JWT(req.body);
 
   logger.info(

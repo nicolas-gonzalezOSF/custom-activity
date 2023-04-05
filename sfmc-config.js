@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 module.exports.getConfig = () => ({
-  key: '1937b7a5-247d-432c-bead-3898a3428e1b',
+  key: process.env.SFMC_PAK_ID,
   workflowApiVersion: '1.1',
   metaData: {
     version: '1.0',
