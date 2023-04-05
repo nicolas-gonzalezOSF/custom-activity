@@ -32,9 +32,9 @@ exports.execute = async (req, res) => {
   );
 
   logger.info(
-    `[${correlationId}] --> Request Body ${req.body}`,
+    `[${correlationId}] --> Request Body ${JSON.stringify(req.body)}`,
   );
-  
+
   const data = JWT(req.body);
 
   logger.info(
