@@ -29,7 +29,6 @@ module.exports.getConfig = () => ({
       header: '',
       format: 'json',
       useJwt: true,
-      customerKey: process.env.CA_KEY, 
       timeout: 10000,
       concurrentRequests: 1,
       retryCount: 2,
