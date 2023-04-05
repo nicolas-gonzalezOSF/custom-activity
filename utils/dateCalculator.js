@@ -71,7 +71,7 @@ const dateFormatCalc = async (correlationId, getCountry) => {
   }
 
   return sendDateFormated;
-  
+
 };
 
 module.exports = {
