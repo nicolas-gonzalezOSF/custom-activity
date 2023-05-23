@@ -1,4 +1,9 @@
-const _ = require('lodash');
+
+
+const { v4: uuidv4 } = require('uuid');
+const JWT = require('../utils/jwtDecoder');
+const logger = require('../utils/logger');
+
 const { getConfig } = require('../sfmc-config');
 /**
  * Render Config
@@ -12,6 +17,15 @@ exports.config = (_req, res) => res.json(getConfig());
  * @param res
  */
 exports.ui = (req, res) => {
+  const correlationId = uuidv4().replace(/-/g, '');
+  const data = JWT(req.body);
+
+  logger.info(
+    `[${correlationId}] --> Req Body --> ${JSON.stringify(
+      data,
+    )}`,
+  );
+
   res.render('index', {
     title: 'Custom Activity',
     dropdownOptions: [
