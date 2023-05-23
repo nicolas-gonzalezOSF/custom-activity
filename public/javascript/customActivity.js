@@ -26,7 +26,6 @@ connection.on('requestedEndpoints', onGetEndpoints);
 
 connection.on('clickedNext', save);
 
-
 const buttonSettings = {
     button: 'next',
     text: 'done',
