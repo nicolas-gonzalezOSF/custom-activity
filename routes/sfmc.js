@@ -108,12 +108,12 @@ module.exports = {
   // eslint-disable-next-line no-unused-vars
   saveData: async (correlationId, deData) => {
     const SFMCtoken = await getJwtToken(correlationId);
-    const newdate = await dateCalculator.dateFormatCalc(correlationId,deData.country);
+    const newdate = await dateCalculator.dateFormatCalc(correlationId, deData.country);
 
     const data = {
       items: [
         {
-          contacId: deData.subscriber_key,
+          SubscriberKey: deData.subscriber_key,
           dateSend: newdate,
           dataExtensionId: deData.dataExtensionId,
         },
