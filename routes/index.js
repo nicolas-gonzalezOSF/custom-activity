@@ -1,7 +1,4 @@
-
-
 const { v4: uuidv4 } = require('uuid');
-const JWT = require('../utils/jwtDecoder');
 const logger = require('../utils/logger');
 
 const { getConfig } = require('../sfmc-config');
@@ -18,7 +15,7 @@ exports.config = (_req, res) => res.json(getConfig());
  */
 exports.ui = (req, res) => {
   const correlationId = uuidv4().replace(/-/g, '');
-  const data = JWT(req.body);
+  const data = req.body;
 
   logger.info(
     `[${correlationId}] --> Req Body --> ${JSON.stringify(
