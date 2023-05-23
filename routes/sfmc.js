@@ -6,13 +6,11 @@ const moment = require('moment-timezone');
 const logger = require('../utils/logger');
 const dateCalculator = require('../utils/dateCalculator');
 
-
 const SFMC_TENANT_ID = process.env.SFMC_SUBDOMAIN;
 
 const SFMC_WS_CRED = {
   client_id: process.env.SFMC_CLIENT_ID,
   client_secret: process.env.SFMC_CLIENT_SECRET,
-  account_id: process.env.SFMC_ACCOUNT_ID,
 };
 
 const getJwtToken = async (correlationId) => {

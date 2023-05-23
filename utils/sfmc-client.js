@@ -6,7 +6,6 @@ const options = {
     clientSecret: process.env.SFMC_CLIENT_SECRET,
     authOptions: {
       authVersion: 2,
-      accountId: process.env.SFMC_ACCOUNT_ID,
     },
     authUrl: `https://${process.env.SFMC_SUBDOMAIN}.auth.marketingcloudapis.com/v2/token`,
   },
