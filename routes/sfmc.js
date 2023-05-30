@@ -114,7 +114,7 @@ module.exports = {
       items: [
         {
           SubscriberKey: deData.subscriber_key,
-          dateSend: newdate,
+          DateSend: newdate,
           dataExtensionId: deData.dataExtensionId,
         },
       ],
