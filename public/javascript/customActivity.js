@@ -4,148 +4,143 @@
 /* eslint-disable strict */
 /* eslint-disable no-console */
 
-define((require) => {
-  'use strict';
+'use strict';
 
-  const Postmonger = require('postmonger');
-  const $ = require('libs/jquery.min');
-  const connection = new Postmonger.Session();
+const Postmonger = require('postmonger');
+const $ = require('libs/jquery.min');
 
-  let payload = {};
-  // eslint-disable-next-line no-unused-vars
-  let authTokens = {};
-  let $form;
-  let eventDefinitionKey;
-  let dataExtensionId;
+const connection = new Postmonger.Session();
 
-  const validateForm = function (cb) {
-    $form = $('.js-settings-form');
+let payload = {};
+// eslint-disable-next-line no-unused-vars
+let authTokens = {};
+let $form;
+let eventDefinitionKey;
+let dataExtensionId;
 
-    $form.validate({
-      submitHandler: function (form) {},
-      errorPlacement: function () {},
-    });
+const validateForm = function (cb) {
+  $form = $('.js-settings-form');
 
-    cb($form);
-  };
-
-  connection.on('initActivity', initialize);
-  connection.on('requestedTokens', onGetTokens);
-  connection.on('requestedEndpoints', onGetEndpoints);
-
-  connection.on('clickedNext', save);
-
-  const buttonSettings = {
-    button: 'next',
-    text: 'done',
-    visible: true,
-    enabled: false,
-  };
-
-  function onRender() {
-    connection.trigger('ready');
-    connection.trigger('requestTokens');
-    connection.trigger('requestEndpoints');
-    connection.trigger('requestTriggerEventDefinition');
-
-    // validation
-    validateForm(function ($form) {
-      $form.on(
-        'change click keyup input paste',
-        'input, textarea',
-        function () {
-          buttonSettings.enabled = $form.valid();
-          connection.trigger('updateButton', buttonSettings);
-        }
-      );
-    });
-  };
-
-  $(window).ready(onRender);
-
-  connection.on('requestedTriggerEventDefinition', (eventDefinitionModel) => {
-    if (eventDefinitionModel) {
-      eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
-      dataExtensionId = eventDefinitionModel.dataExtensionId;
-    }
-    // console.log('eventDefinitionKey', eventDefinitionKey);
-    // console.log('eventDefinitionModel', JSON.stringify(eventDefinitionModel));
+  $form.validate({
+    submitHandler: function (form) {},
+    errorPlacement: function () {},
   });
 
-  /**
-   * Initialization
-   * @param data
-   */
-  function initialize(data) {
-    if (data) {
-      payload = data;
-    }
-    // eslint-disable-next-line no-console
-    console.log(JSON.stringify(payload));
+  cb($form);
+};
 
-    const aArgs = payload.arguments.execute.inArguments;
-    const oArgs = {};
-    for (let i = 0; i < aArgs.length; i++) {
-      Object.assign(oArgs, aArgs[i]);
-    }
+connection.on('initActivity', initialize);
+connection.on('requestedTokens', onGetTokens);
+connection.on('requestedEndpoints', onGetEndpoints);
 
-    console.log(JSON.stringify(oArgs));
+connection.on('clickedNext', save);
 
-    if (oArgs.AckCheck === true) {
-      $('#text').prop('checked', 'true');
-    }
+const buttonSettings = {
+  button: 'next',
+  text: 'done',
+  visible: true,
+  enabled: false,
+};
 
-    validateForm(function ($form) {
+function onRender() {
+  connection.trigger('ready');
+  connection.trigger('requestTokens');
+  connection.trigger('requestEndpoints');
+  connection.trigger('requestTriggerEventDefinition');
+
+  // validation
+  validateForm(function ($form) {
+    $form.on('change click keyup input paste', 'input, textarea', function () {
       buttonSettings.enabled = $form.valid();
       connection.trigger('updateButton', buttonSettings);
     });
+  });
+}
+
+$(window).ready(onRender);
+
+connection.on('requestedTriggerEventDefinition', (eventDefinitionModel) => {
+  if (eventDefinitionModel) {
+    eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
+    dataExtensionId = eventDefinitionModel.dataExtensionId;
+  }
+  // console.log('eventDefinitionKey', eventDefinitionKey);
+  // console.log('eventDefinitionModel', JSON.stringify(eventDefinitionModel));
+});
+
+/**
+ * Initialization
+ * @param data
+ */
+function initialize(data) {
+  if (data) {
+    payload = data;
+  }
+  // eslint-disable-next-line no-console
+  console.log(JSON.stringify(payload));
+
+  const aArgs = payload.arguments.execute.inArguments;
+  const oArgs = {};
+  for (let i = 0; i < aArgs.length; i++) {
+    Object.assign(oArgs, aArgs[i]);
   }
 
-  /**
-   *
-   *
-   * @param {*} tokens
-   */
-  function onGetTokens(tokens) {
-    authTokens = tokens;
+  console.log(JSON.stringify(oArgs));
+
+  if (oArgs.AckCheck === true) {
+    $('#text').prop('checked', 'true');
   }
 
-  /**
-   *
-   *
-   * @param {*} endpoints
-   */
-  function onGetEndpoints(endpoints) {
-    // eslint-disable-next-line no-console
-    console.log(endpoints);
-  }
+  validateForm(function ($form) {
+    buttonSettings.enabled = $form.valid();
+    connection.trigger('updateButton', buttonSettings);
+  });
+}
 
-  /**
-   * Save settings
-   */
-  function save() {
-    if ($form.valid()) {
-      const DropdownOptions = $('#DropdownOptions').val();
-      const AckCheck = $('#text').is(':checked');
+/**
+ *
+ *
+ * @param {*} tokens
+ */
+function onGetTokens(tokens) {
+  authTokens = tokens;
+}
 
-      payload.arguments.execute.inArguments.push({
-        DropdownOptions: DropdownOptions,
-        AckCheck: AckCheck,
-        subscriber_key: [`{{Contact.Key}}`],
-        country: [`{{Event.${eventDefinitionKey}."country"}}`],
-        eventDefinitionKey: [`${eventDefinitionKey}`],
-        dataExtensionId: [`${dataExtensionId}`],
-      });
+/**
+ *
+ *
+ * @param {*} endpoints
+ */
+function onGetEndpoints(endpoints) {
+  // eslint-disable-next-line no-console
+  console.log(endpoints);
+}
 
-      if (AckCheck === true) {
-        payload.metaData.isConfigured = true;
-        connection.trigger('updateActivity', payload);
-        // console.log(JSON.stringify(payload));
-      } else {
-        payload.metaData.isConfigured = false;
-        connection.trigger('updateActivity', payload);
-        // console.log(JSON.stringify(payload));
-      }
+/**
+ * Save settings
+ */
+function save() {
+  if ($form.valid()) {
+    const DropdownOptions = $('#DropdownOptions').val();
+    const AckCheck = $('#text').is(':checked');
+
+    payload.arguments.execute.inArguments.push({
+      DropdownOptions: DropdownOptions,
+      AckCheck: AckCheck,
+      subscriber_key: [`{{Contact.Key}}`],
+      country: [`{{Event.${eventDefinitionKey}."country"}}`],
+      eventDefinitionKey: [`${eventDefinitionKey}`],
+      dataExtensionId: [`${dataExtensionId}`],
+    });
+
+    if (AckCheck === true) {
+      payload.metaData.isConfigured = true;
+      connection.trigger('updateActivity', payload);
+      // console.log(JSON.stringify(payload));
+    } else {
+      payload.metaData.isConfigured = false;
+      connection.trigger('updateActivity', payload);
+      // console.log(JSON.stringify(payload));
     }
   }
-});
+}
