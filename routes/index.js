@@ -13,15 +13,12 @@ exports.config = (_req, res) => res.json(getConfig());
  * @param req
  * @param res
  */
+// eslint-disable-next-line consistent-return
 exports.ui = (req, res) => {
   const correlationId = uuidv4().replace(/-/g, '');
   const data = req.body;
 
   logger.info(`[${correlationId}] --> Req Body --> ${JSON.stringify(data)}`);
-
-  if (req.headers.referer) {
-    return res.status(401).send('Unauthorized');
-  }
 
   res.render('index', {
     title: 'Custom Activity',
