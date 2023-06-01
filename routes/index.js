@@ -17,11 +17,11 @@ exports.ui = (req, res) => {
   const correlationId = uuidv4().replace(/-/g, '');
   const data = req.body;
 
-  logger.info(
-    `[${correlationId}] --> Req Body --> ${JSON.stringify(
-      data,
-    )}`,
-  );
+  logger.info(`[${correlationId}] --> Req Body --> ${JSON.stringify(data)}`);
+
+  if (req.headers.referer) {
+    return res.status(401).send('Unauthorized');
+  }
 
   res.render('index', {
     title: 'Custom Activity',
@@ -31,6 +31,18 @@ exports.ui = (req, res) => {
         value: 'journeywaitbycountry',
       },
     ],
-    checktext: 'I acknowledge that i created the fields: country and dateSend in the entry data extension',
+    checktext:
+      'I acknowledge that i created the fields: country and dateSend in the entry data extension',
   });
+};
+
+exports.login = (req, res) => {
+  const correlationId = uuidv4().replace(/-/g, '');
+  const data = req.body;
+  logger.info(`[${correlationId}] --> Req Body --> ${JSON.stringify(data)}`);
+  res.redirect('/');
+};
+
+exports.logout = (req, res) => {
+  req.session.token = '';
 };

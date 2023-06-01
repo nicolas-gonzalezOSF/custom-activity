@@ -12,7 +12,7 @@ module.exports.getConfig = () => ({
   lang: {
     'en-US': {
       name: 'Country Send Time Calculator',
-      description: '',
+      description: 'Calculate de correct time of send depending on the country',
     },
   },
   arguments: {

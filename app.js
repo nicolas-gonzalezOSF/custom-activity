@@ -5,16 +5,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const http = require('http');
 const path = require('path');
-const _ = require('lodash');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const routes = require('./routes/index');
 const activityRouter = require('./routes/activity');
-
-// const consumers = require('./consumer/queue');
-// const { Queues } = require('./queues');
-// const logger = require('./utils/logger');
-// const amqp = require('amqplib');
 
 // EXPRESS CONFIGURATION
 const app = express();
@@ -32,18 +26,23 @@ app.set('port', process.env.PORT || 3000);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(bodyParser.raw({
-  type: 'application/jwt',
-}));
+app.use(
+  bodyParser.raw({
+    type: 'application/jwt',
+  }),
+);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 // view engine setup
-app.set('view engine', 'pug');
+app.set('view engine', 'ejs');
+
 app.get('/', routes.ui);
 app.get('/index.html', routes.ui);
 app.get('/config.js', routes.config);
 app.get('/config.json', routes.config);
+app.post('/login', routes.login);
+app.post('/logout', routes.logout);
 
 // Custom Routes for MC
 app.post('/journey/save', activityRouter.save);

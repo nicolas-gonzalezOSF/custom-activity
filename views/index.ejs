@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="/styles/salesforce-lightning-design-system.min.css"
+    />
+    <link rel="stylesheet" href="/styles/custom.css" />
+    <script src="javascript/libs/jquery.min.js"></script>
+    <script src="javascript/libs/jquery.validate.min.js"></script>
+    <script src="javascript/libs/postmonger.js"></script>
+    <script src="javascript/customActivity.js"></script>
+    <script src="javascript/libs/require.js"></script>
+  </head>
+
+  <body class="fuelux">
+    <article class="slds-card">
+      <div class="slds-card__header slds-grid">
+        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+          <div class="slds-media__figure">
+            <span
+              class="slds-icon_container slds-icon-standard-contact"
+              title="contact"
+              ><svg class="slds-icon slds-icon_small" aria-hidden="true">
+                <use
+                  xlink:href="/icons/standard-sprite/svg/symbols.svg#contact"
+                ></use></svg
+              ><span class="slds-assistive-text">contact</span></span
+            >
+          </div>
+          <div class="slds-media__body">
+            <h2 class="slds-card__header-title">
+              <a
+                class="slds-card__header-link slds-truncate"
+                href="javascript:void(0);"
+                title="Card Header"
+                ><span>Custom Activity</span></a
+              >
+            </h2>
+          </div>
+        </header>
+      </div>
+      <div class="slds-card__body slds-card__body_inner">
+        <form class="js-settings-form">
+          <div class="slds-form-element">
+            <span
+              ><p>
+                Before configuring the activity please create this 2 fields in
+                your entry data extension <b>Country </b
+                ><span>text field - Nullable and </span><b>DateSend </b
+                ><span>date field - Nullable </span>
+              </p></span
+            >
+          </div>
+          <div class="slds-form-element">
+            <label class="slds-form-element__label" for="DropdownOptions"
+              >Type</label
+            >
+            <div class="slds-form-element__control">
+              <div class="slds-select_container">
+                <select
+                  class="slds-select js-activity-setting"
+                  id="DropdownOptions"
+                  name="dropdownOptions"
+                >
+                  <option value="journeywaitbycountry">
+                    Journey Email Send - Wait Based On Country
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form-element">
+            <label class="slds-form-element__label slds-p-top_medium" for=""
+              ><abbr class="slds-required" title="required"></abbr>Acknowledge
+              *</label
+            >
+            <div class="slds-form-element__control">
+              <div class="slds-checkbox">
+                <input type="checkbox" id="text" name="text" /><label
+                  class="slds-checkbox__label"
+                  for="text"
+                  ><span class="slds-checkbox_faux"></span
+                  ><span
+                    class="slds-form-element__label"
+                    style="font-size: 12px; font-weight: bold"
+                    ><%= checktext %></span
+                  ></label
+                >
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <footer class="slds-card__footer"></footer>
+    </article>
+  </body>
+</html>
