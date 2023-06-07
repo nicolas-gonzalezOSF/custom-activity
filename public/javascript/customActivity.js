@@ -1,17 +1,14 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable no-plusplus */
-/* global window define */
 /* eslint-disable strict */
 /* eslint-disable no-console */
 
 'use strict';
 
-const Postmonger = require('postmonger');
-const $ = require('libs/jquery.min');
-
+// eslint-disable-next-line no-undef
 const connection = new Postmonger.Session();
-
 let payload = {};
+
 // eslint-disable-next-line no-unused-vars
 let authTokens = {};
 let $form;
@@ -57,7 +54,10 @@ function onRender() {
   });
 }
 
-$(window).ready(onRender);
+// eslint-disable-next-line func-names, no-undef
+window.onload = function () {
+  onRender();
+};
 
 connection.on('requestedTriggerEventDefinition', (eventDefinitionModel) => {
   if (eventDefinitionModel) {
