@@ -158,7 +158,7 @@ function save() {
     // Object created
     var obj = {};
     for (let i = 0; i < nameArray.length; i++) {
-      obj[nameArray[i]] = [`{{${pkArray[i]}`];      
+      obj[nameArray[i]] = [`{{${pkArray[i]}}}`];      
     }
     payload.arguments.execute.inArguments.push(obj);
 
