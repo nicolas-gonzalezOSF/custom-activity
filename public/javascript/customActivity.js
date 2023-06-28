@@ -137,7 +137,9 @@ function save() {
     for (let i = 1; i < eventDataextension.length; i++) {
       if (eventDataextension[i]['isPrimaryKey'] == 'true') {
         console.log(eventDataextension[i]['key']);
-        pkarrays[eventDataextension[i]['name']] = eventDataextension[i]['key'];
+        // pkarrays[eventDataextension[i]['name']] = eventDataextension[i]['key'];
+      } else {
+        console.log(eventDataextension[i]['key']);
       }
     }
 
