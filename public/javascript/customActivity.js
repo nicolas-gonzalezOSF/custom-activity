@@ -150,11 +150,17 @@ function save() {
     payload.arguments.execute.inArguments.push({
       DropdownOptions: DropdownOptions,
       AckCheck: AckCheck,
-      subscriber_key: [`{{Contact.Key}}`],
       country: [`{{Event.${eventDefinitionKey}."country"}}`],
       eventDefinitionKey: [`${eventDefinitionKey}`],
       dataExtensionId: [`${dataExtensionId}`],
     });
+
+    // Object created
+    var obj = {};
+    for (let i = 0; i < nameArray.length; i++) {
+      obj[pkArray[i]] = nameArray[i];      
+    }
+    payload.arguments.execute.inArguments.push(obj);
 
     if (AckCheck === true) {
       payload.metaData.isConfigured = true;
