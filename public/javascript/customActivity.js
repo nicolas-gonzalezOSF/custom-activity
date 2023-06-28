@@ -79,10 +79,6 @@ function initialize(data) {
   // eslint-disable-next-line no-console
   console.log(JSON.stringify(payload));
 
-  // eslint-disable-next-line no-use-before-define
-  const deFields = getDeFields();
-  console.log(deFields);
-
   const aArgs = payload.arguments.execute.inArguments;
   const oArgs = {};
   for (let i = 0; i < aArgs.length; i++) {
@@ -124,6 +120,7 @@ function onGetEndpoints(endpoints) {
  * Save settings
  */
 function save() {
+  setTimeout(() => {  console.log('World!'); }, 5000);
   if ($form.valid()) {
     const DropdownOptions = $('#DropdownOptions').val();
     const AckCheck = $('#text').is(':checked');
