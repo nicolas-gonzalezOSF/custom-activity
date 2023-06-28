@@ -127,4 +127,5 @@ module.exports = {
       Rid,
     };
   },
+  getJwtToken,
 };

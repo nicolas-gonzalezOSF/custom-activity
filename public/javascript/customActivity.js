@@ -46,8 +46,9 @@ function onRender() {
   connection.trigger('requestTriggerEventDefinition');
 
   // validation
-  validateForm(function ($form) {
-    $form.on('change click keyup input paste', 'input, textarea', function () {
+  // eslint-disable-next-line no-shadow
+  validateForm(($form) => {
+    $form.on('change click keyup input paste', 'input, textarea', () => {
       buttonSettings.enabled = $form.valid();
       connection.trigger('updateButton', buttonSettings);
     });
@@ -123,6 +124,10 @@ function save() {
   if ($form.valid()) {
     const DropdownOptions = $('#DropdownOptions').val();
     const AckCheck = $('#text').is(':checked');
+
+    const deFields = getDeFields();
+
+    console.log(deFields);
 
     payload.arguments.execute.inArguments.push({
       DropdownOptions: DropdownOptions,

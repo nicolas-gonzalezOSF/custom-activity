@@ -9,6 +9,7 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const routes = require('./routes/index');
 const activityRouter = require('./routes/activity');
+const xml = require('./routes/xml');
 
 // EXPRESS CONFIGURATION
 const app = express();
@@ -43,6 +44,8 @@ app.get('/config.js', routes.config);
 app.get('/config.json', routes.config);
 app.post('/login', routes.login);
 app.post('/logout', routes.logout);
+
+app.post('/retieve-de-info', xml.xmlrun);
 
 // Custom Routes for MC
 app.post('/journey/save', activityRouter.save);

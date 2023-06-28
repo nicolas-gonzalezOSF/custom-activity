@@ -18,10 +18,11 @@ exports.ui = (req, res) => {
   const correlationId = uuidv4().replace(/-/g, '');
   const data = req.body;
 
-  logger.info(`[${correlationId}] --> Req Body --> ${JSON.stringify(data)}`);
+  // logger.info(`[${correlationId}] --> Req Body --> ${JSON.stringify(data)}`);
 
   res.render('index', {
     title: 'Custom Activity',
+    fieldEndpoint: process.env.DEV_DOMAIN,
     dropdownOptions: [
       {
         name: 'Journey Email Send - Wait Based On Country',
@@ -29,7 +30,7 @@ exports.ui = (req, res) => {
       },
     ],
     checktext:
-      'I acknowledge that i created the fields: country and dateSend in the entry data extension',
+      'I acknowledge that i created the fields: Country and DateSend in the entry data extension',
   });
 };
 
