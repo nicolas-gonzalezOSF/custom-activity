@@ -153,6 +153,8 @@ function save() {
       country: [`{{Event.${eventDefinitionKey}."country"}}`],
       eventDefinitionKey: [`${eventDefinitionKey}`],
       dataExtensionId: [`${dataExtensionId}`],
+      dataExtensionFPk: [`${pkArray}`],
+      dataExtensionFNames: [`${nameArray}`],
     });
 
     // Object created
