@@ -175,9 +175,7 @@ async function getDeFields() {
   }`;
 
   xhr.send(data);
-
-    }
-    console.log()
+  console.log(responseData);
 
   return responseData;
 }
