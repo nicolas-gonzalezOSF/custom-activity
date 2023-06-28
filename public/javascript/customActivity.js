@@ -126,7 +126,8 @@ function onGetEndpoints(endpoints) {
  * Save settings
  */
 function save() {
-  let pkarrays = [];
+  let pkArray = [];
+  let nameArray = [];
 
   if ($form.valid()) {
     const DropdownOptions = $('#DropdownOptions').val();
@@ -137,13 +138,14 @@ function save() {
 
     eventDataextension.map((item, index) => {
       if (!item?.isPrimaryKey) {
-        console.log(`array index =>[${index}] is null or empty.`);
+        // console.log(`array index =>[${index}] is null or empty.`);
       } else {
-        console.log(item.key);
-        pkarrays[item.name] = item.key
+        pkArray.push(item.key);
+        nameArray.push(item.name);
       }});
 
-    console.log(JSON.stringify(pkarrays));
+    console.log(JSON.stringify(pkArray));
+    console.log(JSON.stringify(nameArray));
 
     payload.arguments.execute.inArguments.push({
       DropdownOptions: DropdownOptions,
