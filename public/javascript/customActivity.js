@@ -133,12 +133,12 @@ function save() {
     const AckCheck = $('#text').is(':checked');
 
     // console.log(JSON.stringify(eventDataextension.length));
-    
+
     eventDataextension.map((item, index) => {
       if (!item?.isPrimaryKey) {
         console.log(`array index =>[${index}] is null or empty.`);
       } else {
-        console.log(eventDataextension[i]['key']);
+        console.log(item.key);
       }});
 
     /*
