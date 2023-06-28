@@ -126,11 +126,21 @@ function onGetEndpoints(endpoints) {
  * Save settings
  */
 function save() {
+  let pkarrays = [];
   if ($form.valid()) {
     const DropdownOptions = $('#DropdownOptions').val();
     const AckCheck = $('#text').is(':checked');
 
     console.log(JSON.stringify(eventDataextension));
+
+    for (let i = 0; i < eventDataextension.length; i++) {
+      if (eventDataextension[i]['isPrimaryKey'] == 'true') {
+        console.log(JSON.stringify(eventDataextension[i]['name']));
+        pkarrays[eventDataextension[i]['name']] = eventDataextension[i]['key'];
+      }
+    }
+
+    console.log(JSON.stringify(pkarrays));
 
     payload.arguments.execute.inArguments.push({
       DropdownOptions: DropdownOptions,
