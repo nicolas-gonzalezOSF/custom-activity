@@ -132,9 +132,19 @@ function save() {
     const DropdownOptions = $('#DropdownOptions').val();
     const AckCheck = $('#text').is(':checked');
 
-    console.log(JSON.stringify(eventDataextension.length));
+    // console.log(JSON.stringify(eventDataextension.length));
 
     for (let i = 1; i < eventDataextension.length; i++) {
+      console.log('isPrimaryKey');
+      console.log(eventDataextension[i]['isPrimaryKey']);
+
+      console.log('name');
+      console.log(eventDataextension[i]['name']);
+
+      console.log('key');
+      console.log(eventDataextension[i]['key']);
+
+      /*
       if (eventDataextension[i]['isPrimaryKey'] == 'true') {
         console.log(eventDataextension[i]['name']);
         console.log(eventDataextension[i]['key']);
@@ -142,6 +152,7 @@ function save() {
       } else {
         console.log(eventDataextension[i]['key']);
       }
+      */
     }
 
     console.log(JSON.stringify(pkarrays));
