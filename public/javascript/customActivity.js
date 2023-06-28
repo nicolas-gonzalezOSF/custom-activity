@@ -124,9 +124,10 @@ function save() {
     const DropdownOptions = $('#DropdownOptions').val();
     const AckCheck = $('#text').is(':checked');
 
+    // eslint-disable-next-line no-use-before-define
     const deFields = getDeFields();
 
-    console.log(deFields);
+    console.log('de fields: '+ deFields);
 
     payload.arguments.execute.inArguments.push({
       DropdownOptions: DropdownOptions,
