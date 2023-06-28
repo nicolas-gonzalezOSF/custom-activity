@@ -12,6 +12,7 @@ let payload = {};
 // eslint-disable-next-line no-unused-vars
 let authTokens = {};
 let $form;
+let eventDataextension;
 let eventDefinitionKey;
 let dataExtensionId;
 
@@ -70,8 +71,7 @@ connection.on('requestedTriggerEventDefinition', (eventDefinitionModel) => {
 });
 
 connection.on('requestedSchema', (data) => {
-  // save schema
-  console.log('*** Schema ***', JSON.stringify(data['schema']));
+  eventDataextension = data['schema'];
 });
 
 /**
@@ -126,10 +126,11 @@ function onGetEndpoints(endpoints) {
  * Save settings
  */
 function save() {
-  setTimeout(() => { console.log('World!'); }, 5000);
   if ($form.valid()) {
     const DropdownOptions = $('#DropdownOptions').val();
     const AckCheck = $('#text').is(':checked');
+
+    console.log(JSON.stringify(eventDataextension));
 
     payload.arguments.execute.inArguments.push({
       DropdownOptions: DropdownOptions,
@@ -150,34 +151,4 @@ function save() {
       // console.log(JSON.stringify(payload));
     }
   }
-}
-
-function getDeFields() {
-  let xhr = new XMLHttpRequest();
-  let responseData;
-  const fieldEndpoint = document.getElementsByName('fieldEndpoint')[0].content;
-  xhr.open("POST", fieldEndpoint + "/retieve-de-info", true);
-  xhr.setRequestHeader("Accept", "application/json");
-  xhr.setRequestHeader("Content-Type", "application/json");
-
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4) {
-      console.log(xhr.status);
-      console.log(xhr.responseText);
-      responseData = xhr.responseText;
-    }
-  };
-
-  let data = `{
-    "Id": 78912,
-    "Customer": "Jason Sweet",
-    "Quantity": 1,
-    "Price": 18.00
-  }`;
-
-  xhr.send(data);
-  console.log(responseData);
-  console.log(data);
-
-  return responseData;
 }
