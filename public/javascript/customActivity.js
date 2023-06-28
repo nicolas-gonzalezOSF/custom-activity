@@ -144,8 +144,8 @@ function save() {
         nameArray.push(item.name);
       }});
 
-    console.log(JSON.stringify(pkArray));
-    console.log(JSON.stringify(nameArray));
+    // console.log(JSON.stringify(pkArray));
+    // console.log(JSON.stringify(nameArray));
 
     payload.arguments.execute.inArguments.push({
       DropdownOptions: DropdownOptions,
@@ -158,7 +158,7 @@ function save() {
     // Object created
     var obj = {};
     for (let i = 0; i < nameArray.length; i++) {
-      obj[pkArray[i]] = nameArray[i];      
+      obj[nameArray[i]] = pkArray[i];      
     }
     payload.arguments.execute.inArguments.push(obj);
 
