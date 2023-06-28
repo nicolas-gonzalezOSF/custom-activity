@@ -132,7 +132,7 @@ function save() {
     const DropdownOptions = $('#DropdownOptions').val();
     const AckCheck = $('#text').is(':checked');
 
-    console.log(JSON.stringify(eventDataextension));
+    console.log(JSON.stringify(eventDataextension.length));
 
     for (let i = 0; i < eventDataextension.length; i++) {
       if (eventDataextension[i]['isPrimaryKey'] == 'true') {
