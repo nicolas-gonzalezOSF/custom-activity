@@ -151,6 +151,7 @@ function save() {
 }
 
 function getDeFields() {
+  console.log('Start De Fields');
   let xhr = new XMLHttpRequest();
   let responseData;
   const fieldEndpoint = document.getElementsByName('fieldEndpoint')[0].content;
