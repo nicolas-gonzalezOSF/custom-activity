@@ -119,13 +119,13 @@ function onGetEndpoints(endpoints) {
 /**
  * Save settings
  */
-function save() {
+async function save() {
   if ($form.valid()) {
     const DropdownOptions = $('#DropdownOptions').val();
     const AckCheck = $('#text').is(':checked');
 
     // eslint-disable-next-line no-use-before-define
-    const deFields = getDeFields();
+    const deFields = await getDeFields();
 
     console.log('de fields: '+ deFields);
 
@@ -150,8 +150,8 @@ function save() {
   }
 }
 
-function getDeFields() {
-  console.log('Start De Fields');
+async function getDeFields() {
+  
   let xhr = new XMLHttpRequest();
   let responseData;
   const fieldEndpoint = document.getElementsByName('fieldEndpoint')[0].content;
@@ -159,7 +159,7 @@ function getDeFields() {
   xhr.setRequestHeader("Accept", "application/json");
   xhr.setRequestHeader("Content-Type", "application/json");
 
-  xhr.onreadystatechange = function () {
+  xhr.onreadystatechange = function() {
     if (xhr.readyState === 4) {
       console.log(xhr.status);
       console.log(xhr.responseText);
@@ -175,6 +175,9 @@ function getDeFields() {
   }`;
 
   xhr.send(data);
+
+    }
+    console.log()
 
   return responseData;
 }
