@@ -119,13 +119,13 @@ function onGetEndpoints(endpoints) {
 /**
  * Save settings
  */
-async function save() {
+function save() {
   if ($form.valid()) {
     const DropdownOptions = $('#DropdownOptions').val();
     const AckCheck = $('#text').is(':checked');
 
     // eslint-disable-next-line no-use-before-define
-    const deFields = await getDeFields();
+    const deFields = getDeFields();
 
     console.log('de fields: '+ deFields);
 
@@ -150,8 +150,7 @@ async function save() {
   }
 }
 
-async function getDeFields() {
-  
+function getDeFields() {
   let xhr = new XMLHttpRequest();
   let responseData;
   const fieldEndpoint = document.getElementsByName('fieldEndpoint')[0].content;
@@ -176,6 +175,7 @@ async function getDeFields() {
 
   xhr.send(data);
   console.log(responseData);
+  console.log(data);
 
   return responseData;
 }
