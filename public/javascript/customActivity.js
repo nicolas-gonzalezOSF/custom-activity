@@ -17,7 +17,6 @@ let dataExtensionId;
 
 const validateForm = function (cb) {
   $form = $('.js-settings-form');
-
   $form.validate({
     submitHandler: function (form) {},
     errorPlacement: function () {},
@@ -148,4 +147,32 @@ function save() {
       // console.log(JSON.stringify(payload));
     }
   }
+}
+
+function getDeFields() {
+  let xhr = new XMLHttpRequest();
+  let responseData;
+  const fieldEndpoint = document.getElementsByName('fieldEndpoint')[0].content;
+  xhr.open("POST", fieldEndpoint + "/retieve-de-info", true);
+  xhr.setRequestHeader("Accept", "application/json");
+  xhr.setRequestHeader("Content-Type", "application/json");
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      // console.log(xhr.status);
+      // console.log(xhr.responseText);
+      responseData = xhr.responseText;
+    }
+  };
+
+  let data = `{
+    "Id": 78912,
+    "Customer": "Jason Sweet",
+    "Quantity": 1,
+    "Price": 18.00
+  }`;
+
+  xhr.send(data);
+
+  return responseData;
 }

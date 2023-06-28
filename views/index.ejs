@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="fieldEndpoint" content="<%= fieldEndpoint %>" />
     <link
       rel="stylesheet"
       href="/styles/salesforce-lightning-design-system.min.css"
@@ -96,36 +97,8 @@
           </div>
         </form>
       </div>
-      <footer class="slds-card__footer"></footer>
+      <footer class="slds-card__footer">
+      </footer>
     </article>
-    <script>
-      function getDeFields() {
-        let xhr = new XMLHttpRequest();
-        let responseData ; 
-        xhr.open("POST", "<%= fieldEndpoint %>/retieve-de-info", true);
-        xhr.setRequestHeader("Accept", "application/json");
-        xhr.setRequestHeader("Content-Type", "application/json");
-      
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === 4) {
-            // console.log(xhr.status);
-            // console.log(xhr.responseText);
-            responseData = xhr.responseText;
-          }
-        };
-      
-        let data = `{
-          "Id": 78912,
-          "Customer": "Jason Sweet",
-          "Quantity": 1,
-          "Price": 18.00
-        }`;
-      
-        xhr.send(data);
-
-        return responseData;
-        
-      }
-    </script>
   </body>
 </html>
