@@ -131,6 +131,7 @@ function save() {
   if ($form.valid()) {
     const DropdownOptions = $('#DropdownOptions').val();
     const AckCheck = $('#text').is(':checked');
+    let n = 0;
 
     // console.log(JSON.stringify(eventDataextension.length));
 
@@ -139,20 +140,8 @@ function save() {
         console.log(`array index =>[${index}] is null or empty.`);
       } else {
         console.log(item.key);
+        pkarrays[item.name] = item.key
       }});
-
-    /*
-    for (let i = 1; i < eventDataextension.length; i++) {      
-      if (eventDataextension[i]['isPrimaryKey'] == 'true') {
-        console.log(eventDataextension[i]['name']);
-        console.log(eventDataextension[i]['key']);
-        // pkarrays[eventDataextension[i]['name']] = eventDataextension[i]['key'];
-      } else {
-        console.log(eventDataextension[i]['key']);
-      }
-      
-    }
-    */
 
     console.log(JSON.stringify(pkarrays));
 
