@@ -135,10 +135,12 @@ function save() {
     console.log(JSON.stringify(eventDataextension.length));
 
     for (let i = 0; i < eventDataextension.length; i++) {
+      console.log(eventDataextension[i]['key']);
+      /*
       if (eventDataextension[i]['isPrimaryKey'] == 'true') {
-        console.log(eventDataextension[i]['name']);
+        
         pkarrays[eventDataextension[i]['name']] = eventDataextension[i]['key'];
-      }
+      }*/
     }
 
     // console.log(JSON.stringify(pkarrays));
