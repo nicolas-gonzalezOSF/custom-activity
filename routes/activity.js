@@ -64,8 +64,19 @@ exports.execute = async (req, res) => {
 
   const now = moment().tz(process.env.MAIN_TIMEZONE);
 
-  const nameArray = payload.dataExtensionFNames.split(',');
-  const pkArray = payload.dataExtensionFPk.split(',');
+  /*
+  let finalObj = {};
+
+  for(let i = 0; i < jsson.inArguments.length; i++ ) {
+    Object.assign(finalObj,jsson.inArguments[i]);
+  }
+  */
+  logger.info(
+    `[${correlationId}] --> Request Payload ${JSON.stringify(payload)}`,
+  );
+
+  // const nameArray = payload.dataExtensionFNames.toString().split(',');
+  // const pkArray = payload.dataExtensionFPk.toString().split(',');
 
   const job = {
     created_date: now.format('YYYY-MM-DDTHH:mm:ss'),
@@ -74,14 +85,6 @@ exports.execute = async (req, res) => {
     dataExtensionId: coalesceArray(payload.dataExtensionId, correlationId),
     country: coalesceArray(payload.country, correlationId),
   };
-
-  // Object create
-  let obj = {};
-  for (let i = 0; i < nameArray.length; i++) {
-    obj[nameArray[i]] = coalesceArray([`{{${pkArray[i]}}}`], correlationId);
-  }
-
-  job.push(obj);
 
   logger.info(
     `[${correlationId}] --> Job Data --> ${JSON.stringify(
