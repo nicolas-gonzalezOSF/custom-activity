@@ -134,16 +134,14 @@ function save() {
 
     console.log(JSON.stringify(eventDataextension.length));
 
-    for (let i = 0; i < eventDataextension.length; i++) {
-      console.log(eventDataextension[i]['key']);
-      /*
+    for (let i = 1; i < eventDataextension.length; i++) {
       if (eventDataextension[i]['isPrimaryKey'] == 'true') {
-        
+        console.log(eventDataextension[i]['key']);
         pkarrays[eventDataextension[i]['name']] = eventDataextension[i]['key'];
-      }*/
+      }
     }
 
-    // console.log(JSON.stringify(pkarrays));
+    console.log(JSON.stringify(pkarrays));
 
     payload.arguments.execute.inArguments.push({
       DropdownOptions: DropdownOptions,
