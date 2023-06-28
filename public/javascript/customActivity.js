@@ -39,6 +39,7 @@ const buttonSettings = {
 };
 
 function onRender() {
+  connection.trigger('requestSchema');
   connection.trigger('ready');
   connection.trigger('requestTokens');
   connection.trigger('requestEndpoints');
@@ -66,6 +67,11 @@ connection.on('requestedTriggerEventDefinition', (eventDefinitionModel) => {
   }
   // console.log('eventDefinitionKey', eventDefinitionKey);
   // console.log('eventDefinitionModel', JSON.stringify(eventDefinitionModel));
+});
+
+connection.on('requestedSchema', (data) => {
+  // save schema
+  console.log('*** Schema ***', JSON.stringify(data['schema']));
 });
 
 /**
@@ -120,7 +126,7 @@ function onGetEndpoints(endpoints) {
  * Save settings
  */
 function save() {
-  setTimeout(() => {  console.log('World!'); }, 5000);
+  setTimeout(() => { console.log('World!'); }, 5000);
   if ($form.valid()) {
     const DropdownOptions = $('#DropdownOptions').val();
     const AckCheck = $('#text').is(':checked');
