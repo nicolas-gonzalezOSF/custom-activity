@@ -56,7 +56,7 @@ const updateSfmcNhData = async (cred, deData, correlationId) => {
   logger.info(`[${correlationId}] --> Updating SFMC NH DATA`);
   const body = deData;
 
-  const DE_ID = body.items[0].dataExtensionId;
+  const DE_ID = body.items.dataExtensionId;
 
   const options = {
     method: 'PUT',
