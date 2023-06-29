@@ -56,7 +56,7 @@ const updateSfmcNhData = async (cred, deData, correlationId) => {
   logger.info(`[${correlationId}] --> Updating SFMC NH DATA`);
   const body = deData;
 
-  const DE_ID = body.items.dataExtensionId;
+  const DE_ID = body.items[0].dataExtensionId;
 
   const options = {
     method: 'PUT',
@@ -110,13 +110,15 @@ module.exports = {
     const SFMCtoken = await getJwtToken(correlationId);
     const newdate = await dateCalculator.dateFormatCalc(correlationId, deData.country);
 
+    // eslint-disable-next-line no-param-reassign
+    deData.DateSend = newdate;
+
     let data = {
       items: [
       ],
     };
 
-    data.items = deData;
-    data.items.DateSend = newdate;
+    data.items.push(deData);
 
     logger.info(`[${correlationId}] DE DATA --> ${JSON.stringify(data)}`);
 
