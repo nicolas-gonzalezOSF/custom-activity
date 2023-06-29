@@ -9,7 +9,6 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const routes = require('./routes/index');
 const activityRouter = require('./routes/activity');
-const xml = require('./routes/xml');
 
 // EXPRESS CONFIGURATION
 const app = express();
