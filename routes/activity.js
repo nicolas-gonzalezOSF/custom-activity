@@ -79,6 +79,7 @@ exports.execute = async (req, res) => {
     created_date: now.format('YYYY-MM-DDTHH:mm:ss'),
     eventDefinitionKey: coalesceArray(payload.eventDefinitionKey, correlationId),
     dataExtensionId: coalesceArray(payload.dataExtensionId, correlationId),
+    country: coalesceArray(payload.country, correlationId),
   };
 
   for (let i = 0; i < nameArray.length; i++) {

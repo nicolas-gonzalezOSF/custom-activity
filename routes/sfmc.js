@@ -83,7 +83,7 @@ const updateSfmcNhData = async (cred, deData, correlationId) => {
   try {
     response = await request(options);
     logger.info(
-      `[${correlationId}] --> SFMC Response: ${response.statusCode} - ${response.body.requestId}`
+      `[${correlationId}] --> SFMC Response: ${response.statusCode} - ${response.body.requestId}`,
     );
 
     if (response.statusCode !== 202) {
@@ -121,6 +121,7 @@ module.exports = {
     };
 
     logger.info(`[${correlationId}] DE DATA --> ${JSON.stringify(data)}`);
+
     const Rid = await updateSfmcNhData(SFMCtoken, data, correlationId);
     return {
       correlationId,
