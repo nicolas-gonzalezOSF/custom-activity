@@ -82,7 +82,7 @@ exports.execute = async (req, res) => {
   };
 
   for (let i = 0; i < nameArray.length; i++) {
-    job[nameArray[i]] = payload[nameArray[i]];
+    job[nameArray[i]] = coalesceArray(payload[nameArray[i]], correlationId);
   }
 
   logger.info(

@@ -113,7 +113,7 @@ module.exports = {
     const data = {
       items: [
         {
-          SubscriberKey: deData.subscriber_key,
+          SubscriberKey: deData.SubscriberKey,
           DateSend: newdate,
           dataExtensionId: deData.dataExtensionId,
         },
