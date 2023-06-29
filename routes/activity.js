@@ -51,7 +51,12 @@ exports.execute = async (req, res) => {
     );
     return res.status(422).send('Journey Builder inArguments is empty');
   }
-  const payload = _.last(data.inArguments);
+
+  let payload = {};
+
+  for (let i = 0; i < data.inArguments.length; i++) {
+    Object.assign(payload, data.inArguments[i]);
+  }
 
   if (!payload) {
     logger.error(
@@ -64,27 +69,21 @@ exports.execute = async (req, res) => {
 
   const now = moment().tz(process.env.MAIN_TIMEZONE);
 
-  /*
-  let finalObj = {};
-
-  for(let i = 0; i < jsson.inArguments.length; i++ ) {
-    Object.assign(finalObj,jsson.inArguments[i]);
-  }
-  */
   logger.info(
     `[${correlationId}] --> Request Payload ${JSON.stringify(payload)}`,
   );
 
-  // const nameArray = payload.dataExtensionFNames.toString().split(',');
-  // const pkArray = payload.dataExtensionFPk.toString().split(',');
+  const nameArray = payload.dataExtensionFNames.toString().split(',');
 
   const job = {
     created_date: now.format('YYYY-MM-DDTHH:mm:ss'),
-    subscriber_key: coalesceArray(payload.subscriber_key),
     eventDefinitionKey: coalesceArray(payload.eventDefinitionKey, correlationId),
     dataExtensionId: coalesceArray(payload.dataExtensionId, correlationId),
-    country: coalesceArray(payload.country, correlationId),
   };
+
+  for (let i = 0; i < nameArray.length; i++) {
+    job[nameArray[i]] = payload[nameArray[i]];
+  }
 
   logger.info(
     `[${correlationId}] --> Job Data --> ${JSON.stringify(
