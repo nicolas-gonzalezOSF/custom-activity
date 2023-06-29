@@ -110,14 +110,13 @@ module.exports = {
     const SFMCtoken = await getJwtToken(correlationId);
     const newdate = await dateCalculator.dateFormatCalc(correlationId, deData.country);
 
-    const data = {
+    let data = {
       items: [
-        {
-          DateSend: newdate,
-          deData,
-        },
       ],
     };
+
+    data.items = deData;
+    data.items.DateSend = newdate;
 
     logger.info(`[${correlationId}] DE DATA --> ${JSON.stringify(data)}`);
 
